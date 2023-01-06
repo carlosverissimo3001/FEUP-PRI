@@ -1,0 +1,147 @@
+{
+    "add-field-type": [
+        {
+            "name": "text_data",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.StopFilterFactory"
+                    },
+                    {
+                        "class": "solr.PorterStemFilterFactory"
+                    },
+                    {
+                        "class": "solr.WordDelimiterFilterFactory"
+                    }
+                ]
+            },
+            "indexed": "true"
+        },
+        {
+            "name": "text-data_with_synonyms",
+            "class": "solr.TextField",
+            "indexAnalyzer": {
+                "tokenizer": {
+                    "class": "solr.StandardTokenizerFactory"
+                },
+                "filters": [
+                    {
+                        "class": "solr.LowerCaseFilterFactory"
+                    },
+                    {
+                        "class": "solr.StopFilterFactory"
+                    },
+                    {
+                        "class": "solr.PorterStemFilterFactory"
+                    },
+                    {
+                        "class": "solr.WordDelimiterFilterFactory"
+                    }
+                ]
+            },
+            "queryAnalyser": {
+                "filters": {
+                    "class": "solr.SynonymFilterFactory",
+                    "synonyms": "synonyms.txt",
+                    "ignoreCase": "true",
+                    "expand": "true"
+                }
+            },
+            "indexed": "true"
+        },
+        {
+            "name": "integer",
+            "class": "solr.IntPointField",
+            "indexed": "true"
+        },
+        {
+            "name": "float",
+            "class": "solr.FloatPointField",
+            "indexed": "true",
+            "docValues": true
+        },
+        {
+            "name": "String",
+            "class": "solr.TextField",
+            "indexed": "true"
+        },
+        {
+            "name": "string_list",
+            "class": "solr.TextField",
+            "multiValued": true,
+            "indexed": true
+        },
+        {
+            "name": "url-id",
+            "class": "solr.StrField",
+            "indexed": "true"
+        }
+    ],
+    "add-field": [
+        {
+            "name": "title",
+            "type": "String"
+        },
+        {
+            "name": "year",
+            "type": "integer"
+        },
+        {
+            "name": "certificate",
+            "type": "String"
+        },
+        {
+            "name": "runtime",
+            "type": "integer"
+        },
+        {
+            "name": "genres",
+            "type": "string_list"
+        },
+        {
+            "name": "rating",
+            "type": "float"
+        },
+        {
+            "name": "description",
+            "type": "text_data"
+        },
+        {
+            "name": "keywords",
+            "type": "text_data",
+            "multiValued": true
+        },
+        {
+            "name": "directors",
+            "type": "string_list"
+        },
+        {
+            "name": "stars",
+            "type": "string_list"
+        },
+        {
+            "name": "popularity",
+            "type": "float"
+        },
+        {
+            "name": "votes",
+            "type": "integer"
+        },
+        {
+            "name": "poster",
+            "type": "url-id"
+        },
+        {
+            "name": "reviews",
+            "type": "text_data",
+            "multiValued": true
+        }
+    ]
+}

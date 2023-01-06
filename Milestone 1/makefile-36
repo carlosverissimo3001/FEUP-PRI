@@ -1,0 +1,59 @@
+.PHONY = all download extract output
+
+all: output
+
+output: output/movies.csv output/posts.json output/comments.json
+
+output/movies.csv: source/title.basics.tsv source/title.ratings.tsv
+	mkdir -p output
+	python3 -c 'import pandas as pd; basics = pd.read_csv("source/title.basics.tsv", sep="\t", header=0, na_values=["\\N"]); ratings = pd.read_csv("source/title.ratings.tsv", sep="\t", header=0, na_values=["\\N"]); df = pd.merge(basics, ratings, on=["tconst"]); df = df[df["titleType"] == "movie"]; df1 = df[((df["startYear"] >= 2000) & (df["startYear"] < 2010)) & (df.numVotes > 25000)]; df2 = df[((df["startYear"] >= 2010) & (df["startYear"] <= 2020)) & (df.numVotes > 15000)]; df3 = df[(df["startYear"] > 2020) & (df.numVotes > 5000)]; df4 = df[(df["startYear"] < 2000) & (df.numVotes > 30000)]; join = pd.concat([df1, df2, df3, df4]); columns_to_drop = {"titleType", "isAdult", "originalTitle", "endYear"}; join = join.drop(columns=columns_to_drop); join.rename(columns={"startYear": "releaseYear"}, inplace=True); join = join.astype({"releaseYear": "int", "runtimeMinutes": "int"}); join = join.sort_values(["tconst"], axis=0, ascending=True); join.to_csv("output/movies.csv", sep=",", index=False)'
+
+output/posts.json: source/posts.json
+	mkdir -p output
+	jq '.[] | select(.selftext != "[removed]" and .selftext != "[deleted]" and .score >= 20) ' source/posts.json > output/posts.json
+
+output/comments.json: source/comments.json
+	mkdir -p output
+	jq '.[] | select(.body != "[removed]" and .body != "[deleted]")' source/comments.json > output/comments.json
+
+download: download/title.basics.tsv.gz download/title.ratings.tsv.gz download/posts.json.gz download/comments.json.gz
+
+download/title.basics.tsv.gz:
+	mkdir -p download
+	curl -L -o download/title.basics.tsv.gz https://datasets.imdbws.com/title.basics.tsv.gz
+
+download/title.ratings.tsv.gz:
+	mkdir -p download
+	curl -L -o download/title.ratings.tsv.gz https://datasets.imdbws.com/title.ratings.tsv.gz
+
+download/posts.json.gz:
+	mkdir -p download
+	curl -L -o download/posts.json.gz https://monterra.zone/files/PRI/posts.json.gz
+
+download/comments.json.gz:
+	mkdir -p download
+	curl -L -o download/comments.json.gz https://monterra.zone/files/PRI/comments.json.gz
+
+extract: source/title.basics.tsv source/title.ratings.tsv source/posts.json.tsv source/comments.json
+
+source/title.basics.tsv: download/title.basics.tsv.gz
+	mkdir -p source
+	gzip -d -c download/title.basics.tsv.gz > source/title.basics.tsv
+
+source/title.ratings.tsv: download/title.ratings.tsv.gz
+	mkdir -p source
+	gzip -d -c download/title.ratings.tsv.gz > source/title.ratings.tsv
+
+source/posts.json: download/posts.json.gz
+	mkdir -p source
+	gzip -d -c download/posts.json.gz > source/posts.json
+
+source/comments.json: download/comments.json.gz
+	mkdir -p source
+	gzip -d -c download/comments.json.gz > source/comments.json
+
+clean:
+	rm -rf output/
+
+cleanAll:
+	rm -rf output/ source/ download/
