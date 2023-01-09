@@ -58,8 +58,8 @@ Four phases of information lifecycle (**OTPU**):
 
 ### OQ : Different value in data
 
-**Direct** - data provides value by feeding automated systems, e.g. product recommendations systems.
-**Indirect** - data provides value by influencing human decisions, e.g. risk analysis.
+- **Direct** - data provides value by feeding automated systems, e.g. product recommendations systems.
+- **Indirect** - data provides value by influencing human decisions, e.g. risk analysis.
 
 ### OQ : How to increase the value of data?
 
@@ -528,28 +528,78 @@ Six main efficiency metrics:
 
 **Database records** - Collection of related fields, populated with data
 
+### OQ : Boolean model
+
+Queries are represented in the form of a Boolean expression of terms:
+- E.g. `cat AND dog AND NOT mouse` -> `101 AND 110 AND 001`, assuming the term cat is present at documents 1 and 3, dog at 1 and 2, and mouse at 1 and 2 (NOT).
+
+A document either matches or does not match a query, in large document collections, this is not feasible.
+
+Note that there are scenarios in which recall is determinant, i.e, all documents need to be analyzed, e.g. pattent search, and thus the boolean model is used.
 
 ### OQ : Incidence matrix
 
-- **Incidence matrix** - A matrix that represents the relationship between documents and terms. It is a binary matrix, where the rows are the documents and the columns are the terms. The value of a cell is 1 if the term is present in the document, 0 otherwise.
+**Incidence matrix** - A matrix that represents the relationship between documents and terms. It is a binary matrix, where the rows are the documents and the columns are the terms. The value of a cell is 1 if the term is present in the document, 0 otherwise.
 
-### OQ : How to measure the effectivness of a serach system?
+### OQ : Document Unit and Granularity
 
-We need three things:
-- A document collection
-- A test suite of information needs, expressible as queries
-- A set of relevance judgments, typically a binary assessment of either relevant or non-relevant for each query-document pair
+**Document unit** - For indexing, a documenting unit needs to be chosen (words, phrases, books).
 
-### Q : Define stemming and lemmazation.
+**Granularity** - For very long documents, the issue of indexing granularity arises: If the units get too small, we are likely to miss important passages because terms were distributed over several mini-documents, while if units are too large we tend to get spurious matches and the relevant information is hard for the user to find.
 
+### OQ : Define tokenization, token, type
+
+**Tokenization** - Given a character sequence and a defined document unit, tokenizations is the process of chopping it up into pieces, called tokens
+
+**Token** - A sequence of characters that is treated as a unit
+
+**Type** - Class of all tokens containing the same sequence of characters
+
+### Q : Define stop words, stemming, lemmatization
+
+**Stop words** - are words considered of little value in helping select documents in the retrieval process, e.g. articles, prepositions, etc. A stop-list is a commonly hand-picked list of words that are ignored during indexing and retrieval.
+
+Token normalization is the process of canonicalizaing tokens so that matches occur despite superficial differences in the character sequences.
+
+Four main types of token normalization:
+
+**Case folding/Capitalization** - Convert all characters to lower case
+
+**Accents** - Remove punctuation characters
+
+**Stemming** - The process of reducing inflected (or sometimes derived) words to their stem, base or root form – generally a written word form.
+
+**Lemmatization** - The process of grouping together the inflected forms of a word so they can be analysed as a single item, identified by the word's lemma, or dictionary form.
 
 ### Q : What is… an inverted index, a vocabulary, a postings list?
 
-**Inverted index** - An index that maps terms to the documents in which they occur
+**Inverted index** - An index that maps terms to the documents in which they occur, composed by two parts:
+  - **Dictionary/Vocabulary** - Dictionary of terms. Also known as lexicon
+  - **Postings list** - List of documents in which a term occurs
 
-**Vocabulary** - Dictionary of terms. Also known as lexicon
+The dictionary is commonly stored in memory, with pointers to each postings list, which is stored on disk.
 
-**Postings list** - List of documents in which a term occurs
+### OQ : Paramtric and zone indexes
+
+**Parametric indexes** - inverted indexes built for specific parameters, or fields, that support parametric search (e.g. "all documents from author Z containing word Y").
+
+**Zones** - similar concept applied to arbitrary free text (e.g. portion of a document). For example, a document's abstract can be associated to a specific zone index
+
+**Zone index** - An inverted index that is built for a specific zone of a document, e.g. the title, the abstract, etc.
+
+The zone can be encoded either as extension of dictionary entries, or enconding in the postings list.
+
+```c
+// Encoding in the dictionary
+william.abstract -> 11
+william.title -> 2, 4, 8
+william.author -> 2, 3, 6, 8
+
+// Encoding in the postings list
+william -> 2.author, 2.title -> 3.author -> 4.title -> 5.author
+```
+
+Zones can be weighted differently in the ranking function. They can be specified by an expert but are usually learned by the system based on training examples. This is known as `machine learning relevance` or `learning to rank`.
 
 ### Q : What is… an information need, a query, a results list?
 
@@ -571,6 +621,90 @@ A document is relevant if it is one that the user perceives as containing inform
 
 ## Vector model
 
+### Q : What is the bag of words model for a document?
+
+**Bag of words** - Model in which the exact order of words is not important, and is ignored, only the presence of words is considered
+
+### Q : What is… term frequency, collection frequency, document frequency, inverse document frequency?
+
+**Term frequency, tf** - the number of times a term occurs in a document
+  - In the bow model, the ordering of words is ignored, but the number of occurrences of each word is key (in contrast to the boolean model)
+
+**Collection frequency, cf** - the total number of times a term appears in the document collection.
+
+**Document frequency, df** - the number of documents in which a term occurs
+
+**Inverse document frequency, idf** - the inverse of the document frequency, i.e. the number of documents in the collection divided by the number of documents in which the term occurs
+  - Formula: `idf = log(N/df)`, where N is the number of documents in the collection and df is the document frequency of the term
+  - The rarer the term, the higher the idf value, and the more important the term is in discriminating between documents
+  - If a term appears in all docs (df = N), then `idf = log(N/df) = log(N/N) = 0`, and the term is not considered important
+
+**Term frequency-inverse document frequency, tf-idf** - the product of the term frequency and the inverse document frequency
+  - Formula: `tf-idf = tf * idf`
+  - Assigns a term t a weight in a document
+  - Highest when t occurs many times, within a small number of documents
+  - Lower when t occurs few times, or occurs in many documents
+  - Lowest when t occurs in all documents, `tf-idf = 0` as `idf = 0` in this case
+
+### Q : How do you calculate tf-idf weights?
+
+Has been answered above
+
+### OQ : Information retrieval models
+
+Modelling in IR aims to produce a ranking function, i.e, assigns scores to documents with regards to a query.
+
+Two main tasks:
+
+- Conception of a logical framework for representing documents and queries
+- Definition of ranking function that quatifies similarity between documents and queries
+
+An IR model defines:
+
+- A representation of documents (`D`) in the collection, denoted as `di`
+- A representation of queries (`Q`) submitted by users, denoted as `qi`
+- A ranking function `R(qi, di)`, which assigns a score to each document `di` in the collection, with respect to a query `qi`
+
+Three main types of IR models:
+
+**Boolean model**
+  - Documents are represented in a term-document matrix
+  - Queries are specified as boolean expressions over terms
+  - Predicts if document is relevant or not
+  - No ranking is provided
+
+**Vector model**
+  - Each document is represented as a vector, wth a component vector for each dictionary term. tf-idf weights are used to as component weights
+  - The set of documents may be viewed as a set of vectors in vector space, in which there is one axis for each term.
+  - Documents and queries are vectors based off the terms they contain, where similarities between documents and queries can be measured by the cosine of the angle between the vectors
+
+**Language model**
+
+- Function that puts a probability measure over strings drawn from some vocabulary.
+- For a given query, documents are ranked based on the probability of the model generating the query: `P(q|Md)` where `Md` is the model of the document and `q` is the query
+- The simplest language model is the **unigram model**, which assumes that each word in the query is independent of the others, and that the probability of a word is the same as the probability of the word in the document.
+  - `P(t1,t2,t3,t4) = P(t1) * P(t2) * P(t3) * P(t4)`
+- **Bigram model** - assumes that the probability of a word depends on the previous word
+  - `P(t1,t2,t3,t4) = P(t1) * P(t2|t1) * P(t3|t2) * P(t4|t3)`
+- In IR most language-modelling work uses **unigram language**
+- Approach for retrieving documents under a language model:
+  - Infer a language model for each document in the collection
+  - Estimate `P(q|Md)`, the probability of generating the query according to each of these document models
+  - Rank the documents according to these probabilities
+
+### Q : How do you rank documents in the vector model?
+
+**Cosine similarity** is used to rank documents in the vector model.
+- The similarity between two vectors is the cosine of the angle between the two vectors representions of the documents.
+- This approch compensates the effect of document lenght
+
+
+### OQ : Can a query be represented as a vector?
+
+Yes, a query can also be represented as a vector, in a n-dimensional space, where n is the number of terms in the query. Basically, queries are viewed as short documents.
+
+The top ranked results for a given query are thus the documents whose vector have the highest cosine similarity with the query vector.
+
 ## Web search
 
 ## Link analysis
@@ -581,8 +715,4 @@ A document is relevant if it is one that the user perceives as containing inform
 
 ## Search user interfaces
 
-##
-
 ## Learning to Rank and Neural Information Retrieval
-
-##
