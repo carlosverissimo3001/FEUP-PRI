@@ -3,11 +3,12 @@
 - Questions denoted with a **Q** are present in the [study guide](https://docs.google.com/document/u/1/d/e/2PACX-1vTjdHdtrahXgr26A92oW9aQsf1YpoTUoXeL3p-g-xnDHff-QzHIyKPRK8My1RnWCMcmmNBRLh_I6D7v/pub) provided by the teacher.
 - Questions denoted with a **MQ** are questions that I've gathered from various sources.
 
+---
+
 ## Information processing
 
 ### MQ : Information processing and retrieval tasks?
 
-<br>
 
 - Data Ingestion
   - Collect data
@@ -20,11 +21,8 @@
 - Data Optimization
   - Select, export, assesment
 
-<br>
 
 ### MQ : Components of information processing/retrieval?
-
-<br>
 
 Components of information processing
 
@@ -42,21 +40,13 @@ Components of information retrieval
 - Web IR: link analysis, classic algorithms
 - Tentative: Entity-Oriented Search, User Interfaces for Search, Applications
 
-<br>
-
 ### Q : Distinguish between data, metadata, and information
-
-<br>
 
 | Data | Metadata | Information |
 | ---- | -------- | ----------- |
 | measurement of something in a scale | "data about data" | data with context/meaning |
 
-<br>
-
 ### Q : Identify and describe the phases of a typical information lifecycle.
-
-<br>
 
 Four phases of information lifecycle (**OTPU**):
 - **O**ccurrence - discover, design, author, etc.
@@ -64,20 +54,12 @@ Four phases of information lifecycle (**OTPU**):
 - **P**rocessing/Management - collecting, validating, storing, modifying, filtering, etc.
 - **U**sage - monitoring, planning, forecasting, etc.
 
-<br>
-
 ### MQ : Different value in data
-
-<br>
 
 **Direct** - data provides value by feeding automated systems, e.g. product recommendations systems.
 **Indirect** - data provides value by influencing human decisions, e.g. risk analysis.
 
-<br>
-
 ### MQ : How to increase the value of data?
-
-<br>
 
 5 ways to increase the value of data(**MCCSE**):
 
@@ -87,21 +69,13 @@ Four phases of information lifecycle (**OTPU**):
 - **S**tructure data - provide structure to unsctructured data.
 - **E**nrich data - complement existing data with data from other sources.
 
-<br>
-
 ### Q : Describe the challenges of data-intensive applications.
-
-<br>
 
 - the amout of data available
 - the complexity of the data
 - the speed at which the data changes
 
-<br>
-
 ### MQ : Describe the three data stages:
-
-<br>
 
 - **Raw** - focus on data discovery, the primary goals are ingestion, understanding, and metadata generation.
     * What kind of records are in the data?
@@ -113,11 +87,7 @@ Four phases of information lifecycle (**OTPU**):
     * Assess data quality issues
 - **Production** - focus on integrating the data into production processes or products.
 
-<br>
-
 ### Q : Describe typical data processing patterns, pipelines and frameworks, e.g. ETL, EtlT, OSEMN.
-
-<br>
 
 - **ETL** - Extract, Transform, Load
   * **E**xtract, involves extracting data from a source system.
@@ -140,21 +110,12 @@ Four phases of information lifecycle (**OTPU**):
 
 Although presented as a sequence, the steps are often iterative, and the order may vary.
 
-<br>
-
 ### MQ : Describe the concepets of Open Data and FAIR Data.
 
-<br>
-
 - **Open Data** - the idea that data should be freely available to everyone to use, modify, and republish for any purpose.
-
 - **FAIR Data** - a set of principles to make data **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable.
 
-<br>
-
 ### Q : Describe the challenges associated with data processing.
-
-<br>
 
 Data sources can vary in terms of (**OIVCL**):
 
@@ -180,7 +141,7 @@ Data encoding
 
 - Data can be encoded in memory, in specific structures, such as objects, arrays, or lists.
 - Data can be encoded in self-contaided sequences of bytes, for file storage or transmission over a network. e.g. JSON, XML, CSV, etc.
-<br>
+
 - The process of translating from the in-memory representation to the byte sequence is called **enconding** (serialization) and the inverse process is called **decoding** (deserialization).
 - In general not adequate in data pipelines, as it is limited to a single programming language, reduces interoperability, lowers performance, etc.
 
@@ -190,12 +151,8 @@ JSON, XML serialization vs Binary serialization
 - Limitations include: limited support for binary data(e.g. images), ambiguous representation of numbers, etc.
 - Binary serialization is more compact and faster to parse, and is a commom solution for within organization data exchange.
 
-<br>
-
 
 ### Q : Identify and describe challenges and techniques related to: data cleaning, data preparation, and data presentation.
-
-<br>
 
 Data Quality
 
@@ -272,8 +229,6 @@ Visualization
 
 ### Q: Describe the importance of data pipelines and how Makefiles can be used to implement them.
 
-<br>
-
 Data pipeline
 - Sets of processes that move and transform data from one various sources to various destinations, where new value can be derived.
 - Data collection and preparation is usually an ad-hoc and exploratory process, easily leading to a dispersion in threads and acrtivities. Adoption of a pipeline management system (e.g: Makefiles) and a complete and detailed documentation of the process is key to ensure reproducibility and scalability.
@@ -299,8 +254,9 @@ Managing data pipelines with Makefiles
 - Make is language agnostic, and follows a declarative programming paradigm.
 - Makefile is a text file where Make execution rules and dependencies are defined.
 
+### MQ :
 
-### MQ : 
+---
 
 ## IR tasks and systems
 
