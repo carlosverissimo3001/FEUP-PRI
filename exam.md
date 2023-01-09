@@ -707,7 +707,130 @@ The top ranked results for a given query are thus the documents whose vector hav
 
 ## Web search
 
+### OQ : Web search vs Interprise search
+
+### OQ : Challanges in the WWW
+
+**Data** - distribution, size, volatility, quality, unstructured, duplicated, etc.
+
+**Interaction** - user needs, relevance, diversity of users, etc.
+
+### OQ : Web characteristics
+
+- The web can be modelled as a graph
+- Web pages point to, and are pointed to by, other pages
+- Links to other pages (out-links) are called **hyperlinks** and usually include an anchor text
+- Links from other pages (in-links)
+- The number of in-links to a page is called **in-degree**
+- The number of out-links from a page is called **out-degree**
+
+### Q : What are the SCC, IN and OUT components in the view of the web as a bowtie?
+
+Connectivity of the web can be modelled as a bowtie, where the web is divided into three components:
+
+- **IN**: Newer pages with lot of references to existing pages
+- **SCC**: Strongly Connected Core - every vertex is reachable from every other vertex
+- **OUT**: Older pages with lots of references to themselves, but few to others
+
+### OQ : What is cloaking?
+
+**Cloaking** - the practice of serving different content to search engines than to users
+
+### OQ : Define web spam
+
+**Web spam** - the manipulation of content on the web with the purpose of manipulating search engine rankings. Examples include:
+  - Cloaking
+  - Link farms
+  - Link spam
+  - Click spam
+
+### Q : What are informational, transactional and navigational information needs?
+
+**Informational needs** - the need to find information, e.g. to answer a question
+
+**Transactional needs** - the need to perform a transaction, e.g. to buy a product
+
+**Navigational needs** - the need to find a specific web page, e.g. to find a specific company's website
+
+### Q : Name some differences between web search and enterprise search.
+
+| Web search | Enterprise search |
+| --- | --- |
+| Searching for pages | Searching for content/information |
+
+### Q : How do you index images?
+
+To index images, a search engine typically follows these steps:
+
+- **Crawl**: The search engine uses web crawlers to discover new images on the internet.
+
+- **Extract**: The search engine extracts the relevant metadata from the images and stores it in an index.
+
+- **Analyze**: The search engine uses image recognition algorithms to analyze the content of the images and extract additional information such as the objects, scenes, and text depicted in the images.
+
+- **Rank**: The search engine ranks the images based on their relevance to a given search query and the quality of the image.
+
+When a user performs a search using an image search engine, the search engine retrieves the relevant images from the index and displays them in the search results.
+
+
+### Q : Give examples of ranking signals used by search engines.
+
+Hundreds of signals are used by search engines to rank pages. They can be grouped into the following categories:
+
+- **Query-independent signals** (static).
+- **Query-dependent signals** (dynamic).
+- **Document-based signals** (content or structural), e.g. HTML.
+- **Collection-based signals**, e.g. Links.
+- **User-based signals**, e.g. Clicks.
+
+They can also be organized into the following categories:
+
+- **Content signals**
+  - related to the text itself
+  - consider HTML semantics (heading, sections, links, etc.)
+- **Structure signals**
+  - related to the link structure of the web
+  - can be text-based (anchor text) or related to the links (e.g. number of links)
+- **Usage signals**
+  - related to the feedback provided by users (e.g. clicks, bookmarks, etc.)
+  - other usage signals include geographic location, temporal context, technical context, etc.
+
+### OQ : Web crawling
+
+Web crawling is the process by which new pages are discovered and added to the index.
+
+Features a crawler must provide:
+- **Robustness** - the crawler must be able to handle unexpected situations, such as server errors, timeouts, etc.
+- **Politeness**
+  - A crawler should not overload the server with requests
+  - Should wait a reasonable amount of time between requests
+  - Should follow three basic rules:
+    - A crawler must identify itself as such and must not pretend to be a regular user
+    - A crawler must obey the robots.txt file exclusion protocol
+    - A crawler must keep a low bandwidth footprint
+
+Robot exclusion protocol
+- **Server-wide exclusion**:
+  - These exclusions are specified in a file called `robots.txt` and are placed in the root directory of the server
+- **Page-wise exclusion**:
+  - These exclusions are done by the inclusion of meta tags in the HTML code of the page
+  - `<meta name="robots" content="noindex,nofollow">`	- the crawler should neither index nor follow the links in the page
+- **Cache exclusion**:
+  - used to instruct search engines not to show the user a locally cached version of the page
+  - `<meta name="robots" content="nocache">` - the crawler should not cache the page
+
+Crawlers assign different priorities to pages, based on the following factors: **Freshness**, **Quality** and **Volume**
+
 ## Link analysis
+
+### Q : What are in-links and out-links for a web page?
+
+- Links to other pages (**out-links**) usually include an anchor text
+- Links from other pages (**in-links**)
+
+### Q : How is anchor text used in web search?
+### Q : Calculate PageRank values for a set of linked documents.
+### Q : Calculate Hub and Authority values for a set of linked documents.
 
 ## Query processing
 
