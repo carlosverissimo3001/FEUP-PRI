@@ -938,17 +938,154 @@ by considering the user's feedback on the initial results
 
 ### Q : What is entity-oriented search? What is necessary to implement it?
 
+- **Entity-oriented search** - search paradigm of organizing and accessing information centered around entities, and their attributes and relationships.
+
+Users expect to find a search box to help them find information. However, the information they are looking for may not be in the form of a document, but rather in the form of an entity. For example, a user may want to find information about a person, a place, or an organization. In this case, the user is looking for an entity, not a document.
+
+Traditionally, this information objects were documents, but today's search engines return rich results pages beyond the classic "ten blue links". These results pages include images, videos, news, and other types of information. In order to provide these rich results, search engines need to understand the information they are indexing. This is where entity-oriented search comes in.
+
+### OQ : What is a Knowledge Base and an Entity?
+
+- **Knowledge Base** - Largescale structured knowledge repositories Knowledge bases organize information around specify things or objects, called "entities".
+
+- **Entity** - uniquely identifiable object or thing, e.g. person, place, organization, etc. Characterized by its name(s), type(s), atrributes, and relationships with other entities.
+
+Properties of entities (**UNTAR**):
+
+- **U**nique identifier
+  - entities need to be uniquely identifiable. E.g. username, email address, URI, Wikipedia page ID, etc.
+  - One-to-one correspondence between each entity identifier and the object it represents
+- **N**ame - names do not uniquely identify entities; multiple entities may share the same name
+- **T**ype - work as semantic categories that group together entities with similar properties
+- **A**ttributes - the characteristics or features of an entity
+- **R**elationships - describe how two entities are associated to each other
+
+### OQ : What is the RDF data model?
+
+- **RDF** (Resource Description Framework) - a data model for representing information about resources, such as people, places, and things. RDF is a standard model to describe entities.
+
+- RDF is a language designed to describe things which are referred to as resources.
+
+### OQ : Semantic web
+
+Term coined be Tim Berners-Lee in 2001 referring to an envisioned extension to the original web
+
+### OQ : User infomation needs formats
+
+- **Keyword queries** - Easy to formulate but imprecise. Also known as free-text queries.
+- **Structured queries** - structured data sources are traditionally queried using formal query languages (e.g., SQL)
+- **Keyword++ queries** - correspond to keyword queries that are complemented with additional structural elements
+  - e.g. [retrieval site:fe.up.pt]
+- **Natural language queries** - are formulated using natural language, the same way one would express it in a conversation
+  - e.g. "What is the weather in Lisbon?"
+- **Zero-queries** - the tradicional information access is reative
+
+### OQ : Data types
+
+- **Unstructured data** - which can be found in vast quantities in a variety of forms, e.g. text
+- **Semistructured data** -  is characterized by the lack of rigid, formal structure. e.g. HTML
+- **Structured data** - adheres to a predefined (fixed) schema and is typically organized in a tabular format (e.g., relational databases). The schema defines how the data is organized and imposes constrains to ensure consistency.
+
+### OQ : Tasks in entity-oriented search
+
+- **Entity retrieval** - queries are better answered by returning a ranked list of entities, as opposed to a list of documents. Challanges:
+  - how to represent information needs
+  - how to represent entities
+  - how to match those representations
+- **Entity linking** - recognizing mentions of entities in text and associating these mentions with the corresponding entities in knowledge bases
+- **Entities for an enhanced UX** - entities can improve the UX throughout the entire search process
+
+### OQ : URI, RDF triples and RDF graph
+
+- **URI** (Uniform Resource Identifier) - each resource is assigned an URI making it uniquely and globally identifiable.
+- RDF Triples:
+  - **Subject**, always an URI
+  - **Predicate**, always an URI
+  - **Object**, can be an URI or a literal
+- RDF graph:
+  - URIs are represented by rounded rectangles
+  - Literals are represented by shaded rectangles
+
+### OQ : Knowledge bases
+
+Publicly available knowledge bases:
+- **DBpedia**
+- **Wikidata**
+
+Private knowledge bases:
+- **Google Knowledge Graph**
+- **Facebook Entity Graph**
+- **Microsoft Satori**
+
 ### Q : Describe the challenges and techniques associated with… building entity descriptions, entity ranking, linking.
+
+**Ad hoc entity retrieval** is the task of asnwerinf information needs by returning a ranked list of entities, as opposed to a list of documents.
+
+"Ad hoc" refers to the standard form of retieval in which the user, motivated by an ad hoc (temporary) information need, initiates the search process by formulating and issuing a query.
+
+**How to perform entity retrieval?**
+
+- Model the "entity retrieval" problem as a "document retrieval" problem.
+  - Constructing the profile documents;
+  - Ranking the profile documents.
+
+**How to construct entities descriptions?**
+
+- Create a "profile document" with information about the entity obtained from textual content, from a document collection, in which the entities occurs. The goal is to estimate a term count associated with each entity
+
+**Entities components**
+
+- **Entity length**, is the total number of terms in the entity description.
+- **Term frequency** (TF), is the normalized term count (by length) in the entity description.
+- **Entity frequency** (EF), is the number of entities in which the term occurs.
+- **Inverse entity frequency** (IEF), is the log normalized ratio between the total number of entities in the catalog, and the entity frequency
+
+**Ranking entities**
+
+- With the term-based entity representation, we can now rank entities with respect to their relevance to the information need.
+- The retrieval models from document ranking are used for entity sorcing by replacing the document with the entity in the equations.
+
+**Entity linking**
+
+- Task of recognizing entity mentions in text and linking them to the corresponding entries in a knowledge base.
+- Three steps (**MCD**):
+  - **Mention detection** - identify mentions of entities in text
+    - Build a dictionary o entity surface forms, i.e. entities with all names variants.
+    - Check all document n-grams against the dictionary
+    - Filter out undesired entities
+  - **Candidate generation** - generate a list of candidate entities for each mention
+  - **Disambiguation** - select the most likely entity for each mention
+
 
 ### Q : Describe the data sources typically required for entity oriented search and its characteristics.
 
+Three possible data sources:
+
+- **Unstructured data** - This is the scanario in which we want to find entities in arbitrary text. E.g. Wikipedia, news, blogs, etc.
+- **Semistructured data** - A significant portion of the web content is already organized in a semistructured format, e.g. HTML. E.g. Web pages, social media, etc.
+  - The standard way of incorportating the internal document structure into the retrieval model is through the use of document fields, where document segments correspond to fields - e.g. title, summary, introduction, etc.
+- **Structured data** - There is a growing number of larger general purpose publicly available knowledge bases, e.g. DBpedia, Wikidata, etc.
+  - In KB, info is organized using the RDF data model:
+    - each entity is represented by a URI
+    - its properties are represented in the form of subject-predicate-object triples
 
 
+### OQ : Fields used for entity representation
 
+- **Name**
+- **Name Variants**
+- **Attributes**
+- **Types**
+- **Outgoing relations**
+- **Incoming relations**
+- **Top predicates**
+- **Catch-all field**
 
+### OQ : Triples to text
 
-
-
+- Literal values are used as-is
+- URIs need to be converted to human-readable
+  - **URI Resolution** - process of finding the a human-readable name/label for a URI
 
 
 
