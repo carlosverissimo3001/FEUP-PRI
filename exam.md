@@ -25,7 +25,6 @@
 
 ### OQ : Information processing and retrieval tasks
 
-
 - Data Ingestion
   - Collect data
   - Describe data
@@ -37,11 +36,9 @@
 - Data Optimization
   - Select, export, assesment
 
-
 ### OQ : Components of information processing/retrieval
 
 Components of information processing
-
 - Data sources, provenance and datasets
 - Data acquisition and data exploration
 - Data pipelines
@@ -49,7 +46,6 @@ Components of information processing
 - Data characterization
 
 Components of information retrieval
-
 - Architecture of IR Systems: indexing and retrieval processes
 - IR Models: ranking, boolean model, vector space model
 - Evaluation in IR: methods and algorithms
@@ -217,10 +213,10 @@ Data preparation
     - Techinques for performing data reduction (**FSA**):
       - Data **F**iltering
         - Deterministic nature: e.g. remove data from a specific time period, remove all references to a specific keyword, etc.
-        - Data **S**ampling
-          - Non-deterministic nature: randomly select a subset of the data
-          - Need to ensure that resulting sample is representative of the original data.
-          - Important to analyse distribution of data before and after sampling.
+      - Data **S**ampling
+        - Non-deterministic nature: randomly select a subset of the data
+        - Need to ensure that resulting sample is representative of the original data.
+        - Important to analyse distribution of data before and after sampling.
       - Data **A**ggregation
         - Reduce excessive detail in data
 
@@ -718,8 +714,6 @@ Yes, a query can also be represented as a vector, in a n-dimensional space, wher
 The top ranked results for a given query are thus the documents whose vector have the highest cosine similarity with the query vector.
 
 ## Web search
-
-### OQ : Web search vs Interprise search
 
 ### OQ : Challanges in the WWW
 
