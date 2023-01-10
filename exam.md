@@ -880,7 +880,7 @@ Important feature for image search.
     - `PR(a)` - pagerank of page `a`
     - `PR(pi)` is normalized by `L(pi)`
 
-Example: Assume the following web graph.
+Example: Assume the following web graph as well as no damping factor (q=0)
 ```
 N.1 -> N.2 -> N.3
   ^    |      /
@@ -896,7 +896,7 @@ N4 is pointed to by N2 and N3.
 So, the pagerank of N4 is:
 
 PR(N4) = PR(N2)/L(N2) + PR(N3)/L(N3)
-// Where L(N2) = 2 and L(N3) = 1, i.e, the number of out-links from N2 and N3, 
+// Where L(N2) = 2 and L(N3) = 1, i.e, the number of out-links from N2 and N3,
 
 PR(N4) = PR(N2)/2 + PR(N3)
 ```
