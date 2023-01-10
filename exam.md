@@ -5,6 +5,21 @@
   - [Exam Flashcards 1](https://quizlet.com/pt/661206106/pri-exam-flash-cards/)
   - [Exam Flashcards 2](https://quizlet.com/pt/663165956/pri-flash-cards/)
 
+
+
+# Table of Contents
+1. [Information Processing](#information-processing)
+2. [IR Tasks and Systems](#ir-tasks-and-systems)
+3. [Evaluation](#evaluation)
+4. [IR Concepts](#ir-concepts)
+5. [Vector Model](#vector-model)
+6. [Web Search](#web-search)
+7. [Link Analysis](#link-analysis)
+8. [Query Processing](#query-processing)
+9.  [Entity-Oriented Search](#entity-oriented-search)
+10. [Search Interfaces](#search-user-interfaces-sui)
+11. [Learning to Rank](#learning-to-rank-and-neural-information-retrieval)
+
 ---
 
 ## Information processing
