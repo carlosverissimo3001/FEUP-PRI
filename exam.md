@@ -880,12 +880,61 @@ Important feature for image search.
     - `PR(a)` - pagerank of page `a`
     - `PR(pi)` is normalized by `L(pi)`
 
+Example: Assume the following web graph.
+```
+N.1 -> N.2 -> N.3
+  ^    |      /
+   \   |    /
+    \  V  V
+      N.4
+```
+Calculate the pagerank of N4
+```
+To calculate the pagerank of N4, we need to know the pages that link to it.
+N4 is pointed to by N2 and N3.
+
+So, the pagerank of N4 is:
+
+PR(N4) = PR(N2)/L(N2) + PR(N3)/L(N3)
+// Where L(N2) = 2 and L(N3) = 1, i.e, the number of out-links from N2 and N3, 
+
+PR(N4) = PR(N2)/2 + PR(N3)
+```
+
 ### Q : Calculate Hub and Authority values for a set of linked documents.
 
 - **HITS** (Hyperlink Induced Topic Search) computes two scores for each page: authority score and hub score.
   - Pages with many links pointing to them are called **authorities**.
   - Pages with many outgoing links are called **hubs**
 - **Query-dependent** algorithm.
+
+- **Hub score update** - Each node's hub score is the sum of the authority scores of each node that it points to.
+- **Authority score update** - Each node's authority score is the sum of the hub scores of each node pointed to it
+
+Example: Assume the following web graph, assume a starting value of 1 for all hub and authority scores.
+```
+N.1 -> N.2 -> N.3
+  ^    |      /
+   \   |    /
+    \  V  V
+      N.4
+```
+1. Calculate hub scores for all nodes, after 1 iteration
+```md
+H(N1) = A(N2) = 1                   # N1 only points to N2
+H(N2) = A(N3) + A(N4) = 1 + 1 = 2   # N2 points to N3 and N4
+H(N3) = A(N4) = 1                   # N3 only points to N4
+H(N4) = A(N1)                       # N4 only points to N1
+```
+2. Calculate authority scores for all nodes, after 1 iteration
+```md
+A(N1) = H(N4) = 1                   # N1 is only pointed by N4
+A(N2) = H(N1) = 1                   # N2 is only pointed by N1
+A(N3) = H(N2) = 1                   # N3 is only pointed by N2
+A(N4) = H(N2) + H(N3) = 1 + 1 = 2   # N4 is pointed by N2 and N3
+```
+
+
 
 ## Query processing
 
