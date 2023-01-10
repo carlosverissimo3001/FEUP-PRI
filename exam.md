@@ -1152,13 +1152,54 @@ UI design principles (**VLCC-ESFA-CH**):
 
 ### Q : What is Learning to Rank?
 
+Task to automatically construct a ranking model, using training data such that the model can sort new objects according to their degree of relevance, preference or importance.
+
+### OQ : Ranking problems
+
+Many information retrieval problems are by nature ranking problems, such as:
+- **Document retrieval**
+- **Collaborative filtering**
+- **Key term extraction**
+- **Definition finding**
+
+### OQ : Ranking in IR
+
+**Query Dependent models**
+- Boolean model, set based model (no degree of relevance)
+- Vector space model, using term weighting such as tf-idf
+- Probabilistic models, such as language models and BM25
+
+**Query Independent models**
+- Link-based model for the web such as PageRank and HITS
+
 ### Q : Which are the main approaches in LTR? How do they differ in terms of input and output data?
+
+| Approach | Input | Output |
+| --- | --- | --- |
+| **Pointwise** | Feature vectors for single documents | Relevance degree of each single document |
+| **Pairwise** | Pairs of documents, both represented as feature vectors | pairwise prefrerence (ranging from -1 to 1) between document pairs|
+| **Listwise** | Entire group of documents associated with a query | Full document predicted ranked for the query |
+
+Best performing approach is **Listwise**.
 
 ### Q : What is Neural Information Retrieval?
 
-### Q : How can neural models be used in the retrieval process?
-
-### Q : What are word embeddings?
+**Neural Information Retrieval** (NIR) is the application of shallow or deep neural networks to the task of information retrieval.
 
 ### Q : What is the difference between Learning to Rank and Neural Information Retrieval?
 
+Unlike LTR approaches that train machine learning models over a set of hand-crafted features, neural models accept the raw text of a query and document as input.
+
+### Q : How can neural models be used in the retrieval process?
+
+Neural models can be used in the retrieval process in two ways:
+- Learn the ranking functions combining the relevance signals to produce an ordered list of documents
+- Learn the abstract representations of documents and queries to capture their relevance information
+
+### Q : What are word embeddings?
+
+A word embedding is a numerical vector that represents the semantic meaning of a given term sequence. Word embeddings are learned from large amounts of text data and are used to represent words in a high-dimensional space.
+
+### OQ : What are transformers?
+
+A transformer is a neural network designed to explicitly take into account the context of arbitrary long sequences of text.
