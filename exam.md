@@ -828,9 +828,41 @@ Crawlers assign different priorities to pages, based on the following factors: *
 - Links to other pages (**out-links**) usually include an anchor text
 - Links from other pages (**in-links**)
 
+### OQ : Link-based ranking algorithms
+
+- **PageRank** - the most popular link-based ranking algorithm, devoloped by Google
+- **HITS**
+
 ### Q : How is anchor text used in web search?
+
+Represents a description from "others" about the given page.
+
+The collection of all anchor texts can be explored with standard IR techniques, and incorporated as an additional features in an inverted index.
+
+Important feature for image search.
+
 ### Q : Calculate PageRank values for a set of linked documents.
+
+- The pagerank of a node is a value between 0 and 1, representing the probability that a random surfer will reach that node.
+- It is a **query-independent** value computed offline, that only depends on the structure of the web graph.
+- **Damping factor** - the probability that a random surfer will follow a link to a new page. The damping factor is usually set to 0.85. This means that, 85% of the time, a random surfer will follow a link to a new page, and 15% of the time, a random surfer will jump to a random page in the web graph.
+
+- Formula to calculate the page rank of a page:
+  - `PR(A) = q/T + (1-q) * (PR(p1)/L(p1) + ... + PR(pn)/L(pn))`
+    - `q` - probability that a user randomly jumps to the page, typically 0.15
+    - `T` - total number of pages in the web graph
+    - `1-q` - probability that a user visits the page by following a link
+    - `L(a)` - number of out-links from page `a`
+    - `p1, ..., pn` - pages that link to page `a`
+    - `PR(a)` - pagerank of page `a`
+    - `PR(pi)` is normalized by `L(pi)`
+
 ### Q : Calculate Hub and Authority values for a set of linked documents.
+
+- **HITS** (Hyperlink Induced Topic Search) computes two scores for each page: authority score and hub score.
+  - Pages with many links pointing to them are called **authorities**.
+  - Pages with many outgoing links are called **hubs**
+- **Query-dependent** algorithm.
 
 ## Query processing
 
