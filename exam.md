@@ -771,8 +771,9 @@ Connectivity of the web can be modelled as a bowtie, where the web is divided in
 | Web search | Enterprise search |
 | --- | --- |
 | Searching for pages | Searching for content/information |
+| Non-controlled collection | Controlled collection |
 
-### Q : How do you index images?
+### Q : How do you index images or other multimedia content?
 
 To index images, a search engine typically follows these steps:
 
@@ -785,6 +786,12 @@ To index images, a search engine typically follows these steps:
 - **Rank**: The search engine ranks the images based on their relevance to a given search query and the quality of the image.
 
 When a user performs a search using an image search engine, the search engine retrieves the relevant images from the index and displays them in the search results.
+
+In addition:
+
+- The text content of the document which includes the multimedia resource is used for describing it
+- The anchor text in links to the multimedia resource is associated to it
+- The tags assigned to a multimedia resource are asoociated to it
 
 
 ### Q : Give examples of ranking signals used by search engines.
