@@ -112,7 +112,7 @@ Four phases of information lifecycle (**OTPU**):
 
 Although presented as a sequence, the steps are often iterative, and the order may vary.
 
-### OQ : Describe the concepets of Open Data and FAIR Data.
+### OQ : Describe the concepts of Open Data and FAIR Data.
 
 - **Open Data** - the idea that data should be freely available to everyone to use, modify, and republish for any purpose.
 - **FAIR Data** - a set of principles to make data **F**indable, **A**ccessible, **I**nteroperable, and **R**eusable.
@@ -295,8 +295,6 @@ Summary of data models:
   - **E**xpect the output of every program to become the input to another, as yet unknown, program.
   - **D**esign and build software, even operating systems, to be tried early, ideally within weeks.
   - **U**se tools in preference to unskilled help to lighten a programming task, even if you have to detour to build the tools and expect to throw some of them out after you've finished using them.
-
----
 
 ## IR tasks and systems
 
@@ -866,8 +864,114 @@ Important feature for image search.
 
 ## Query processing
 
+### Q : Describe and distinguish between the two query processing techniques — document-at-a-time and term-at-a-time.
+
+- **Document-at-a-time**: calculates complete scores for documents, by processing all term lists, one document at a time. At the end all documents are sorted according to their scores.
+  - Is able to consider context of each term in the query.
+  - Is slower than term-at-a-time, as it requires more computations.
+
+- **Term-at-a-time**: accumulates scores for documents by processing term lists one at a time. When all terms are processed, the accumulators contain the final scores of all matching documents.
+
+### OQ : Optimization techinques for query processing
+
+- Read less data from the index
+- Process fewer documents
+- **Skip pointers** - are used to speed up inverted index lookups
+- **Conjunctive processing**
+  - base assumption: only return documents that contain all query terms
+  - can be employed for both document-at-a-time and term-at-a-time processing
+  - In short queries, benifits efficieny and effectiveness, but long queries, e.g. phrase searches, are not good candidates for conjunctive processing
+- Early termination of query processing
+  - Ignore high-frequency word lists in term-at-a-time processing, common terms have long postings lists, thus high processing cost
+  - Ignore documents at the end of lists in document-at-a-time processing, when they are ordered by some quality measure
+- Order postings in inverted indexes
+  - Order inverted lists by quality metric (e.g. number of IN links in Web IR)
+- Cache popular search results
+
+### Q : Identify and describe query expansions techniques, as well as local relevance feedback methods.
+
+- Exact matches aren't the only way to obtain relevant results in search systems
+- The vocabulary mismatch between the user's query and the documents in the collection is a major problem. Also the fact the synonyms exist.
+- On the system-side, this can be tackled by using different techniques:
+  - **Global methods**: expand or reformulate the query terms independently of the query or the results returned from it
+    - e.g. query expansion
+  - **Local methods**: adjust a query relative to the documents that initially appear to match the query
+    - e.g. Rocchio's algorithm
+
+**Local relevance feedback methods**:
+- **Relevance feedback** - the idea of relevance feedback is to involve the user in the process to improve the final result set
+by considering the user's feedback on the initial results
+  - Basic process:
+    - The user submits a query
+    - The system returns a set of documents
+    - The user marks some of the documents as relevant
+    - The system uses the user's feedback to improve the result set
+    - The system returns the improved result set to the user
+  - Explores the idea that it may be difficulty to formulate a good query when you don't know the collection, but it is easy to judge a particular document as relevant or not.
+  - Can be effective in tracking a user's evolving information need, i.e. seeing some documents may lead user to refine their understanding of the information need, and thus the query.
+- **Rocchio Algorithm** - It models a way of incorporating relevance feedback information into the vector space model.
+- Relevance feedback can improve both reccall and precision, and has been shown to be most useful for increasing recall
+- Releavnce feedback **limitations** (**MCV**):
+  - **M**isspellings
+  - **C**ross-language retrieval
+  - **V**ocabulary mismatch
+- Pseudo-relevance feedback - provides a method for automatic local analysis. It automates the manual part so that a relevance feedback algorithm is applied without user intervention.
+- Implicit relevance feedback - uses the user's click-through data to infer the user's relevance judgments.
+
+**Global query reformulation methods**:
+- **Query expansion** - User gives additional input on query words or phrases to suggest additional terms. Users opt to use one of alternative query suggestions.
+
+
+### OQ : Search user experience techniques
+
+- Support Natural Language Queries
+- Query auto-completion and suggestions
+- Result snippets, e.g. query-dependent result snippets. / Contextual snippets
+- Clustering results
+- Support site search
+
+#### OQ : What is SERP?
+
+- **SERP** (Search Engine Results Page) - the page that is returned by a search engine in response to a query by a searcher.
+
 ## Entity-oriented search
+
+### Q : What is entity-oriented search? What is necessary to implement it?
+
+### Q : Describe the challenges and techniques associated with… building entity descriptions, entity ranking, linking.
+
+### Q : Describe the data sources typically required for entity oriented search and its characteristics.
+
+
+
+
+
+
+
+
+
+
 
 ## Search user interfaces
 
+### Q : Identify and describe user interface techniques and elements that can be used to improve user experience in search systems.
+
+### Q : Describe how user interaction innovations and experiments can be evaluated.
+
+### Q : What are design principles and heuristics?
+
+
 ## Learning to Rank and Neural Information Retrieval
+
+### Q : What is Learning to Rank?
+
+### Q : Which are the main approaches in LTR? How do they differ in terms of input and output data?
+
+### Q : What is Neural Information Retrieval?
+
+### Q : How can neural models be used in the retrieval process?
+
+### Q : What are word embeddings?
+
+### Q : What is the difference between Learning to Rank and Neural Information Retrieval?
+
