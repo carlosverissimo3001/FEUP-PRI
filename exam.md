@@ -297,6 +297,14 @@ Summary of data models:
   - With **document model**, data is mapped to self-contained documents, and relationships between documents are rare.
   - With **graph databases**, data is separated in independent units and, potentially, everything is related to everything.
 
+### OQ : Interaction types in Data Processing
+
+There are three main approaches in building the interaction style in data processing.
+
+- Online systems (**services**), where they wait for a request, handles it, and sends back a response. The measure for performance is Response Time
+- Offline systems (**batch processing**), where the system takes a large amount of input data, processes it, and produces the corresponding output. Suitable for long jobs and asynchronous processes
+- **Stream** processing system, where a system receives an input and produces a specified output as a result of an event happening
+
 ### OQ : Unix Philosophy
 
 - **Unix Philosophy** encapsulates a set of design principles that became popular in the 1970s, when Unix was first developed.
