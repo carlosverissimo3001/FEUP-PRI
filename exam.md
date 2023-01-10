@@ -20,7 +20,6 @@
 10. [Search Interfaces](#search-user-interfaces-sui)
 11. [Learning to Rank](#learning-to-rank-and-neural-information-retrieval)
 
----
 
 ## Information processing
 
