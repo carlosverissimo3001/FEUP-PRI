@@ -746,6 +746,8 @@ Connectivity of the web can be modelled as a bowtie, where the web is divided in
 - **SCC**: Strongly Connected Core - every vertex is reachable from every other vertex
 - **OUT**: Older pages with lots of references to themselves, but few to others
 
+Following page links, one can get from any page in SCC to any page in OUT.
+
 ### OQ : What is cloaking?
 
 **Cloaking** - the practice of serving different content to search engines than to users
