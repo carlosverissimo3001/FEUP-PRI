@@ -1089,14 +1089,64 @@ Three possible data sources:
 
 
 
-## Search user interfaces
+## Search user interfaces (SUI)
 
 ### Q : Identify and describe user interface techniques and elements that can be used to improve user experience in search systems.
 
+Elements of a search user interface are divided into four groups (**IIPC**):
+- **Input** - features that allow the user to express what they are looking for
+- **Informational** - features that provide results or information about results
+- **Personalization** - features that relate specifically to searchers and their previous interactions with the system
+- **Control** - features that help searchers to modify, refine, restrict and expand their queries
+
+### OQ : Related disciplines to SUI
+
+Six related disciplines (**UGILIH**):
+
+- **U**ser experience
+- **G**raphic design
+- **I**nformation Retrieval
+- **L**ibrary and Information Science
+- **I**nfo-Seeking
+- **H**uman-Computer Interaction
+
 ### Q : Describe how user interaction innovations and experiments can be evaluated.
+
+Three approaches to evaluate user interaction innovations and experiments:
+- **IR Style** - Simple measures like precision, recall, are not sufficent.
+- **Empirical user studies** - Commom measurements used:
+  - Number of searches
+  - Number of terms per search
+  - Number of results visited
+  - Search times
+  - Task accuracy
+- **Analytical approaches** - There are many analytic methods for UI and UX, but not many for SUI.
+
+Choosing an approach (**DECIDE**):
+- **D**etermine the goals of the evaluation
+- **E**xplore the specific questions to be answered
+- **C**hoose an evaluation paradigm, such as systematic IR or empirical user studies
+- **I**dentify practical issues in performing the evaluation
+- **D**ecide how to deal with ethical issues
+- **E**valuate, interpert and present the data
 
 ### Q : What are design principles and heuristics?
 
+UI design principles (**VLCC-ESFA-CH**):
+
+- **V**isibility - keep the user informed about what is going on at any given time. e.g. keep the current search term visible
+- **L**anguage - adopt language that the user can understand. e.g. instead of `query` use `search`
+- **C**ontrol and Freedom - do not block the user's in a hole or a fixed pathway. e.g. highlight spelling errors but do not force the user to correct them
+- **C**onsisency - adopt a consistent design. e.g. use the same terminology throughout the system
+- **E**rror Prevention - make it hard to do unproductive things
+- **S**upport Recognition - help users not to have to remember what they've done before. e.g. provide related searches, keep the query in the search box
+- **F**lexibility and Efficiency - provide features and shortcuts for experienced users to be more productive. e.g. let users navigate the results with the keyboard shortcuts
+- **A**esthetic and Minimalism - keep desing simple and minimalistic.
+- **C**lear error messages - provide useful and informational error messages. e.g. not only state lack of results, but provide alternative suggestions
+- **H**elp and Documentation - provide help and documentation. FAQ, tutorials, etc.
+
+
+**Heuristics** - existings guidelines and best practices can help on the design of a successful SUI.z
 
 ## Learning to Rank and Neural Information Retrieval
 
