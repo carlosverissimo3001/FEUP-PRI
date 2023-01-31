@@ -15,7 +15,7 @@ The main idea for the front-end was to make it as simple as possible, so that th
 
 | Milestone 1 | Milestone 2 | Milestone 3 | Final Project | Exam | Final Grade |
 | ----------- | ----------- | ----------- | ------------- | ---- | ----------- |
-|     16.0    |     16.2    |     17.2    |    16.62      |      |             |
+|     16.0    |     16.2    |     17.2    |    16.62      | 15.9 |     16      |
 
 ## Setting up Solr
 
